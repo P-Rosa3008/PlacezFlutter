@@ -2,14 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/src/bloc_listener.dart';
-import 'package:provider/src/provider.dart';
-import 'package:flutter_bloc/src/bloc_provider.dart';
-import 'package:flutter_bloc/src/multi_bloc_provider.dart';
-import 'package:flutter_bloc/src/bloc_builder.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import './map/bloc/map_bloc.dart';
-import 'create_marker/bloc/create_marker_bloc.dart';
 import './map/utils/utils.dart';
 
 void main() => runApp(MyApp());
@@ -34,11 +29,10 @@ class MapSample extends StatefulWidget {
 
 class MapSampleState extends State<MapSample> {
   final MapBloc _mapBloc = MapBloc();
-  final CreateMarkerBloc _createMarkerBloc = CreateMarkerBloc();
 
-  Completer<GoogleMapController> _completer = Completer();
+  final Completer<GoogleMapController> _completer = Completer();
 
-  static final CameraPosition cameraPosition = CameraPosition(
+  static const CameraPosition cameraPosition = CameraPosition(
     target: LatLng(39.353161, -8.13946),
     zoom: 14.4746,
   );
@@ -52,8 +46,8 @@ class MapSampleState extends State<MapSample> {
   PreferredSizeWidget _buildAppBar() {
     return AppBar(
       toolbarHeight: 65,
-      backgroundColor: Color(0xFF203361),
-      title: Text(
+      backgroundColor: const Color(0xFF203361),
+      title: const Text(
         "Placez",
         style: TextStyle(
           fontSize: 48,
@@ -63,17 +57,19 @@ class MapSampleState extends State<MapSample> {
     );
   }
 
-  Widget _buildMap(Completer<GoogleMapController> completer, CameraPosition cameraPosition) {
+  Widget _buildMap(
+      Completer<GoogleMapController> completer, CameraPosition cameraPosition) {
     return GoogleMap(
       initialCameraPosition: cameraPosition,
       onMapCreated: (GoogleMapController controller) {
         completer.complete(controller);
         controller.setMapStyle(jsonEncode(mapStyles));
       },
-      minMaxZoomPreference: MinMaxZoomPreference(5, null),
+      minMaxZoomPreference: const MinMaxZoomPreference(5, null),
       onTap: (LatLng coords) => {
-        print(coords),
-        showDialog(context: context, builder: (BuildContext context) => _buildCreateMarker()),
+        showDialog(
+            context: context,
+            builder: (BuildContext context) => _buildCreateMarker()),
       },
     );
   }
@@ -82,7 +78,7 @@ class MapSampleState extends State<MapSample> {
     return Center(
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        child: Container(
+        child: const SizedBox(
           height: 500,
           width: 350,
         ),
@@ -98,7 +94,7 @@ class MapSampleState extends State<MapSample> {
   }
 
   Widget _buildDefaultScreen() {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Text("DEFAULT"),
       ),
@@ -106,7 +102,7 @@ class MapSampleState extends State<MapSample> {
   }
 
   Widget _buildLoadingScreen() {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: CircularProgressIndicator(),
       ),
