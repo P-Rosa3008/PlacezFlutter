@@ -2,9 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import './map/bloc/map_bloc.dart';
 import './map/utils/utils.dart';
 
 void main() => runApp(MyApp());
@@ -14,10 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Google Maps Demo',
-      home: BlocProvider(
-        create: (context) => MapBloc(),
-        child: MapSample(),
-      ),
+      home: MapSample(),
     );
   }
 }
@@ -28,8 +23,6 @@ class MapSample extends StatefulWidget {
 }
 
 class MapSampleState extends State<MapSample> {
-  final MapBloc _mapBloc = MapBloc();
-
   final Completer<GoogleMapController> _completer = Completer();
 
   static const CameraPosition cameraPosition = CameraPosition(
@@ -40,7 +33,6 @@ class MapSampleState extends State<MapSample> {
   @override
   void initState() {
     super.initState();
-    _mapBloc.add(LoadMapEvent());
   }
 
   PreferredSizeWidget _buildAppBar() {
@@ -111,18 +103,6 @@ class MapSampleState extends State<MapSample> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
-      bloc: _mapBloc,
-      builder: (context, state) {
-        switch (state.runtimeType) {
-          case MapLoaded:
-            return _buildContentSuccess();
-          case MapLoading:
-            return _buildLoadingScreen();
-          default:
-            return _buildDefaultScreen();
-        }
-      },
-    );
+    return _buildContentSuccess();
   }
 }
