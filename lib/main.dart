@@ -4,8 +4,17 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import './map/utils/utils.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+      ProviderScope(
+        child: MyApp(),
+      ),
+    );
+
+final greetingsProvider = Provider<String>((ref) {
+  return "Hello World!";
+});
 
 class MyApp extends StatelessWidget {
   @override
@@ -25,11 +34,10 @@ class MapSample extends StatefulWidget {
 class MapSampleState extends State<MapSample> {
   final Completer<GoogleMapController> _completer = Completer();
 
-  static const CameraPosition cameraPosition = CameraPosition(
+  static const CameraPosition _cameraPosition = CameraPosition(
     target: LatLng(39.353161, -8.13946),
     zoom: 14.4746,
   );
-
   @override
   void initState() {
     super.initState();
@@ -49,8 +57,8 @@ class MapSampleState extends State<MapSample> {
     );
   }
 
-  Widget _buildMap(
-      Completer<GoogleMapController> completer, CameraPosition cameraPosition) {
+  Widget _buildContentSuccess(Completer<GoogleMapController> completer,
+      CameraPosition cameraPosition, WidgetRef ref) {
     return GoogleMap(
       initialCameraPosition: cameraPosition,
       onMapCreated: (GoogleMapController controller) {
@@ -59,9 +67,10 @@ class MapSampleState extends State<MapSample> {
       },
       minMaxZoomPreference: const MinMaxZoomPreference(5, null),
       onTap: (LatLng coords) => {
-        showDialog(
-            context: context,
-            builder: (BuildContext context) => _buildCreateMarker()),
+        print(ref.read(greetingsProvider)),
+        // showDialog(
+        //     context: context,
+        //     builder: (BuildContext context) => _buildCreateMarker()),
       },
     );
   }
@@ -75,13 +84,6 @@ class MapSampleState extends State<MapSample> {
           width: 350,
         ),
       ),
-    );
-  }
-
-  Widget _buildContentSuccess() {
-    return Scaffold(
-      appBar: _buildAppBar(),
-      body: _buildMap(_completer, cameraPosition),
     );
   }
 
@@ -103,6 +105,9 @@ class MapSampleState extends State<MapSample> {
 
   @override
   Widget build(BuildContext context) {
-    return _buildContentSuccess();
+    return Consumer(
+      builder: (context, ref, child) =>
+          _buildContentSuccess(_completer, _cameraPosition, ref),
+    );
   }
 }
