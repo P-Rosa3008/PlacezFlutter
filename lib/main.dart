@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import './map/utils/utils.dart';
+import 'src/utils/utils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() => runApp(
@@ -11,10 +11,6 @@ void main() => runApp(
         child: MyApp(),
       ),
     );
-
-final greetingsProvider = Provider<String>((ref) {
-  return "Hello World!";
-});
 
 class MyApp extends StatelessWidget {
   @override
@@ -67,10 +63,9 @@ class MapSampleState extends State<MapSample> {
       },
       minMaxZoomPreference: const MinMaxZoomPreference(5, null),
       onTap: (LatLng coords) => {
-        print(ref.read(greetingsProvider)),
-        // showDialog(
-        //     context: context,
-        //     builder: (BuildContext context) => _buildCreateMarker()),
+        showDialog(
+            context: context,
+            builder: (BuildContext context) => _buildCreateMarker()),
       },
     );
   }
