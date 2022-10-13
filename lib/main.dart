@@ -53,8 +53,7 @@ class MapSampleState extends State<MapSample> {
     );
   }
 
-  Widget _buildContentSuccess(Completer<GoogleMapController> completer,
-      CameraPosition cameraPosition, WidgetRef ref) {
+  Widget _buildContentSuccess(Completer<GoogleMapController> completer, CameraPosition cameraPosition, WidgetRef ref) {
     return GoogleMap(
       initialCameraPosition: cameraPosition,
       onMapCreated: (GoogleMapController controller) {
@@ -63,9 +62,7 @@ class MapSampleState extends State<MapSample> {
       },
       minMaxZoomPreference: const MinMaxZoomPreference(5, null),
       onTap: (LatLng coords) => {
-        showDialog(
-            context: context,
-            builder: (BuildContext context) => _buildCreateMarker()),
+        showDialog(context: context, builder: (BuildContext context) => _buildCreateMarker()),
       },
     );
   }
@@ -101,8 +98,7 @@ class MapSampleState extends State<MapSample> {
   @override
   Widget build(BuildContext context) {
     return Consumer(
-      builder: (context, ref, child) =>
-          _buildContentSuccess(_completer, _cameraPosition, ref),
+      builder: (context, ref, child) => _buildContentSuccess(_completer, _cameraPosition, ref),
     );
   }
 }
