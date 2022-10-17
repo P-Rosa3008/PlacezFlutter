@@ -30,7 +30,7 @@ class _MainMapState extends State<MainMap> {
       },
       minMaxZoomPreference: const MinMaxZoomPreference(5, null),
       onTap: (LatLng coords) => {
-        // showDialog(context: context, builder: (BuildContext context) => _buildCreateMarker()),
+        showDialog(context: context, builder: (BuildContext context) => _buildCreateMarker()),
       },
     );
   }

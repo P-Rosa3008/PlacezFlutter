@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:placez/src/features/main_page/view/main_page.dart';
-import 'package:placez/src/utils/theme/app_bar.dart';
 
 void main() => runApp(
       const ProviderScope(
@@ -9,23 +8,16 @@ void main() => runApp(
       ),
     );
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Google Maps Demo',
-      home: Scaffold(
-        appBar: buildAppBar(),
-        body: const MapSample(),
-        // bottomNavigationBar: AnimatedBottomNavigationBar.builder(
-        //   itemCount: 1,
-        //   tabBuilder: ((index, isActive) {return}),
-        //   activeIndex: 0,
-        //   onTap: ((_) => {}),
-        // ),
-      ),
-    );
+    return const MaterialApp(title: 'Flutter Google Maps Demo', home: MainPage());
   }
 }
