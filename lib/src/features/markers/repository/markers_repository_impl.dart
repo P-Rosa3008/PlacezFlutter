@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:placez/src/features/map/markers/model/marker.dart';
+import 'package:placez/src/features/markers/model/marker.dart';
 import 'package:placez/src/utils/http_util.dart';
 import 'package:retrofit/http.dart';
 import 'package:riverpod/riverpod.dart';
@@ -18,7 +18,7 @@ final markersRepository = Provider(
 abstract class MarkersRepositoryImpl implements MarkersRepository {
   factory MarkersRepositoryImpl(Dio dio) = _MarkersRepositoryImpl;
 
-  @GET('markers')
+  @GET('/api/places/markers')
   @override
   Future<List<Marker>> retriveMarkers();
 }

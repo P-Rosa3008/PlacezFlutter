@@ -5,9 +5,10 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 final Provider<Dio> dioProvider = Provider(
   (ref) {
     final Dio dio = Dio(
-      BaseOptions(baseUrl: 'change to my route'),
+      BaseOptions(baseUrl: 'https://placez-pmbr.herokuapp.com'),
     );
-    dio.interceptors.add(PrettyDioLogger(requestHeader: true, requestBody: true));
+    dio.interceptors
+        .add(PrettyDioLogger(requestHeader: true, requestBody: true));
     dio.interceptors.add(
       QueuedInterceptorsWrapper(
         onRequest: (options, requestInterceptorHandler) {
@@ -16,8 +17,10 @@ final Provider<Dio> dioProvider = Provider(
           };
           requestInterceptorHandler.next(options);
         },
-        onResponse: (response, requestInterceptorHandler) => requestInterceptorHandler.next(response),
-        onError: (error, requestInterceptorHandler) => requestInterceptorHandler.next(error),
+        onResponse: (response, requestInterceptorHandler) =>
+            requestInterceptorHandler.next(response),
+        onError: (error, requestInterceptorHandler) =>
+            requestInterceptorHandler.next(error),
       ),
     );
     return dio;

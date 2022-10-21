@@ -33,44 +33,48 @@ mixin _$Marker {
 /// @nodoc
 abstract class $MarkerCopyWith<$Res> {
   factory $MarkerCopyWith(Marker value, $Res Function(Marker) then) =
-      _$MarkerCopyWithImpl<$Res>;
+      _$MarkerCopyWithImpl<$Res, Marker>;
+  @useResult
   $Res call(
       {double lat, double lng, String markerName, List<String> markerPhotos});
 }
 
 /// @nodoc
-class _$MarkerCopyWithImpl<$Res> implements $MarkerCopyWith<$Res> {
+class _$MarkerCopyWithImpl<$Res, $Val extends Marker>
+    implements $MarkerCopyWith<$Res> {
   _$MarkerCopyWithImpl(this._value, this._then);
 
-  final Marker _value;
   // ignore: unused_field
-  final $Res Function(Marker) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? lat = freezed,
-    Object? lng = freezed,
-    Object? markerName = freezed,
-    Object? markerPhotos = freezed,
+    Object? lat = null,
+    Object? lng = null,
+    Object? markerName = null,
+    Object? markerPhotos = null,
   }) {
     return _then(_value.copyWith(
-      lat: lat == freezed
+      lat: null == lat
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
               as double,
-      lng: lng == freezed
+      lng: null == lng
           ? _value.lng
           : lng // ignore: cast_nullable_to_non_nullable
               as double,
-      markerName: markerName == freezed
+      markerName: null == markerName
           ? _value.markerName
           : markerName // ignore: cast_nullable_to_non_nullable
               as String,
-      markerPhotos: markerPhotos == freezed
+      markerPhotos: null == markerPhotos
           ? _value.markerPhotos
           : markerPhotos // ignore: cast_nullable_to_non_nullable
               as List<String>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -79,40 +83,40 @@ abstract class _$$_MarkerCopyWith<$Res> implements $MarkerCopyWith<$Res> {
   factory _$$_MarkerCopyWith(_$_Marker value, $Res Function(_$_Marker) then) =
       __$$_MarkerCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {double lat, double lng, String markerName, List<String> markerPhotos});
 }
 
 /// @nodoc
-class __$$_MarkerCopyWithImpl<$Res> extends _$MarkerCopyWithImpl<$Res>
+class __$$_MarkerCopyWithImpl<$Res>
+    extends _$MarkerCopyWithImpl<$Res, _$_Marker>
     implements _$$_MarkerCopyWith<$Res> {
   __$$_MarkerCopyWithImpl(_$_Marker _value, $Res Function(_$_Marker) _then)
-      : super(_value, (v) => _then(v as _$_Marker));
+      : super(_value, _then);
 
-  @override
-  _$_Marker get _value => super._value as _$_Marker;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? lat = freezed,
-    Object? lng = freezed,
-    Object? markerName = freezed,
-    Object? markerPhotos = freezed,
+    Object? lat = null,
+    Object? lng = null,
+    Object? markerName = null,
+    Object? markerPhotos = null,
   }) {
     return _then(_$_Marker(
-      lat: lat == freezed
+      lat: null == lat
           ? _value.lat
           : lat // ignore: cast_nullable_to_non_nullable
               as double,
-      lng: lng == freezed
+      lng: null == lng
           ? _value.lng
           : lng // ignore: cast_nullable_to_non_nullable
               as double,
-      markerName: markerName == freezed
+      markerName: null == markerName
           ? _value.markerName
           : markerName // ignore: cast_nullable_to_non_nullable
               as String,
-      markerPhotos: markerPhotos == freezed
+      markerPhotos: null == markerPhotos
           ? _value._markerPhotos
           : markerPhotos // ignore: cast_nullable_to_non_nullable
               as List<String>,
@@ -157,25 +161,22 @@ class _$_Marker implements _Marker {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Marker &&
-            const DeepCollectionEquality().equals(other.lat, lat) &&
-            const DeepCollectionEquality().equals(other.lng, lng) &&
-            const DeepCollectionEquality()
-                .equals(other.markerName, markerName) &&
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.lng, lng) || other.lng == lng) &&
+            (identical(other.markerName, markerName) ||
+                other.markerName == markerName) &&
             const DeepCollectionEquality()
                 .equals(other._markerPhotos, _markerPhotos));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(lat),
-      const DeepCollectionEquality().hash(lng),
-      const DeepCollectionEquality().hash(markerName),
+  int get hashCode => Object.hash(runtimeType, lat, lng, markerName,
       const DeepCollectionEquality().hash(_markerPhotos));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MarkerCopyWith<_$_Marker> get copyWith =>
       __$$_MarkerCopyWithImpl<_$_Marker>(this, _$identity);
 
