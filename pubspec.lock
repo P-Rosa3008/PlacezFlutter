@@ -478,6 +478,13 @@ packages:
       url: "https://mobile20unpubfrontdoor.azurefd.net"
     source: hosted
     version: "1.5.1"
+  pretty_dio_logger:
+    dependency: "direct main"
+    description:
+      name: pretty_dio_logger
+      url: "https://mobile20unpubfrontdoor.azurefd.net"
+    source: hosted
+    version: "1.2.0-beta-1"
   provider:
     dependency: "direct main"
     description:
@@ -506,6 +513,20 @@ packages:
       url: "https://mobile20unpubfrontdoor.azurefd.net"
     source: hosted
     version: "1.2.1"
+  retrofit:
+    dependency: "direct main"
+    description:
+      name: retrofit
+      url: "https://mobile20unpubfrontdoor.azurefd.net"
+    source: hosted
+    version: "3.3.1"
+  retrofit_generator:
+    dependency: "direct dev"
+    description:
+      name: retrofit_generator
+      url: "https://mobile20unpubfrontdoor.azurefd.net"
+    source: hosted
+    version: "4.2.0"
   riverpod:
     dependency: "direct main"
     description:
@@ -623,6 +644,13 @@ packages:
       url: "https://mobile20unpubfrontdoor.azurefd.net"
     source: hosted
     version: "1.0.0"
+  tuple:
+    dependency: transitive
+    description:
+      name: tuple
+      url: "https://mobile20unpubfrontdoor.azurefd.net"
+    source: hosted
+    version: "2.0.1"
   typed_data:
     dependency: transitive
     description:
