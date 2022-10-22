@@ -4,11 +4,11 @@ import 'package:placez/src/features/markers/repository/markers_repository_impl.d
 import 'package:riverpod/riverpod.dart';
 
 final markersProvider =
-    StateNotifierProvider<MarkersProviders, AsyncValue<List<Marker>>>(
+    StateNotifierProvider<MarkersProviders, AsyncValue<dynamic>>(
   (ref) => MarkersProviders(ref.watch(markersRepository)),
 );
 
-class MarkersProviders extends StateNotifier<AsyncValue<List<Marker>>> {
+class MarkersProviders extends StateNotifier<AsyncValue<dynamic>> {
   final MarkersRepository _markersRepository;
 
   MarkersProviders(this._markersRepository)

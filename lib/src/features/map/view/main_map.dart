@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -41,7 +42,7 @@ class _MainMapState extends ConsumerState<MainMap> {
     return Scaffold(
       body: provider.when(
         data: ((data) {
-          print("DATA:" + data.toString());
+          print(data["places"][4]["title"]);
           return GoogleMap(
             initialCameraPosition: _cameraPosition,
             onMapCreated: (GoogleMapController controller) {

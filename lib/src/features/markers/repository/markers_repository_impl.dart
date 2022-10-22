@@ -20,5 +20,5 @@ abstract class MarkersRepositoryImpl implements MarkersRepository {
 
   @GET('/api/places/')
   @override
-  Future<List<Marker>> retriveMarkers();
+  Future<dynamic> retriveMarkers();
 }
