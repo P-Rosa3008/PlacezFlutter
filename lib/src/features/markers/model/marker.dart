@@ -14,5 +14,6 @@ class Marker with _$Marker {
 
   factory Marker.fromJson(Map<String, dynamic> json) => _$MarkerFromJson(json);
 
-  factory Marker.initialState() => const Marker(lat: 0.0, lng: 0.0, markerName: '');
+  factory Marker.initialState() =>
+      const Marker(lat: 0.0, lng: 0.0, markerName: '');
 }

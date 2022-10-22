@@ -18,7 +18,7 @@ final markersRepository = Provider(
 abstract class MarkersRepositoryImpl implements MarkersRepository {
   factory MarkersRepositoryImpl(Dio dio) = _MarkersRepositoryImpl;
 
-  @GET('/api/places/markers')
+  @GET('/api/places/')
   @override
   Future<List<Marker>> retriveMarkers();
 }

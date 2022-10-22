@@ -38,18 +38,33 @@ class _MainMapState extends ConsumerState<MainMap> {
   Widget build(BuildContext context) {
     final provider = ref.watch(markersProvider);
 
-    print(provider.value);
-
-    return GoogleMap(
-      initialCameraPosition: _cameraPosition,
-      onMapCreated: (GoogleMapController controller) {
-        _completer.complete(controller);
-        controller.setMapStyle(jsonEncode(mapStyles));
-      },
-      minMaxZoomPreference: const MinMaxZoomPreference(5, null),
-      onTap: (LatLng coords) => {
-        showDialog(context: context, builder: (BuildContext context) => _buildCreateMarker()),
-      },
+    return Scaffold(
+      body: provider.when(
+        data: ((data) {
+          print("DATA:" + data.toString());
+          return GoogleMap(
+            initialCameraPosition: _cameraPosition,
+            onMapCreated: (GoogleMapController controller) {
+              _completer.complete(controller);
+              controller.setMapStyle(jsonEncode(mapStyles));
+            },
+            minMaxZoomPreference: const MinMaxZoomPreference(5, null),
+            onTap: (LatLng coords) => {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) => _buildCreateMarker()),
+            },
+          );
+        }),
+        error: ((error, stackTrace) {
+          return Text(
+            error.toString(),
+          );
+        }),
+        loading: () {
+          return const CircularProgressIndicator();
+        },
+      ),
     );
   }
 }

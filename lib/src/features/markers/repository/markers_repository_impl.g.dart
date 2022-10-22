@@ -32,7 +32,7 @@ class _MarkersRepositoryImpl implements MarkersRepositoryImpl {
     )
             .compose(
               _dio.options,
-              '/api/places/markers',
+              '/api/places/',
               queryParameters: queryParameters,
               data: _data,
             )
